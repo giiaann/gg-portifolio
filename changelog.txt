@@ -1,0 +1,6 @@
+13/02/2024
+project idea start
+
+14/02/2024 
+git launch and initial configuration
+aws account launch with IAM creation
