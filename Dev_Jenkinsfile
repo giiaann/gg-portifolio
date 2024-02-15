@@ -1,19 +1,53 @@
 pipeline {
-    agent any
+    agent none
+    parameters {
+        string(name: 'TARGET_NODE', defaultValue: 'Local Node (Dev)', description: 'Target node for execution. Default is Local Node (Dev).')
+    }
     stages {
-        stage('Build') {
+        stage('Initialization') {
+            agent { label 'Local Node (Dev)' }
             steps {
-                echo 'Building..'
+                script {
+                    echo "Initializing job on ${params.TARGET_NODE}"
+                    dir('/home/ubuntu/gg-project') {
+                        // Assuming credentials ID 'github-ssh-key' is your Jenkins stored SSH private key
+                        sshagent(['github-ssh-key']) {
+                            // Clone or fetch the develop branch
+                            if (!fileExists('.git')) {
+                                sh 'git clone --branch develop git@github.com:giiaann/gg-portifolio.git .'
+                                echo 'Repository cloned and checked out to develop branch.'
+                            } else {
+                                sh 'git checkout develop'
+                                sh 'git status'
+				sh 'git fetch'
+                                echo 'Switched to and updated develop branch.'
+                            }
+                            // Additional Git commands as needed
+                            sh 'git status'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            agent { label 'Local Node (Dev)' }
+            steps {
+                echo 'Building on Local Node (Dev)..'
+                // Add build steps here
             }
         }
         stage('Test') {
+            agent { label 'Local Node (Dev)' }
             steps {
-                echo 'Testing..'
+                echo 'Testing on Local Node (Dev)..'
+                // Add test steps here
             }
         }
         stage('Deploy') {
+            agent { label 'Local Node (Dev)' }
             steps {
-                echo 'Deploying..'
+                echo 'Deploying on Local Node (Dev)..'
+                // Add deploy steps here
             }
         }
     }
