@@ -6,7 +6,12 @@ git launch and initial configuration
 aws account launch with IAM creation
 
 15/02/2024
-vpc + sg creation + ec2 launch + jenkins study
+IAM users fix
+Security group created
+Keypair created
+EC2 Launch
+Jenkins install in Dev server
+Jenkins pipeline gathers Dev_Jenkinsfile in infra branch and pulls code from develop branch into EC2 folder /home/ubuntu/gg-project
 
 15/02/2024
 testing my first commit
