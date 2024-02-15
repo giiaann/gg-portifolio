@@ -7,3 +7,7 @@ aws account launch with IAM creation
 
 15/02/2024
 vpc + sg creation + ec2 launch + jenkins study
+
+15/02/2024
+testing my first commit
+gregorio.assiscorrea@icloud.com
