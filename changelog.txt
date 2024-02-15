@@ -6,4 +6,4 @@ git launch and initial configuration
 aws account launch with IAM creation
 
 15/02/2024
-vpc + sg creation + ec2 launch
+vpc + sg creation + ec2 launch + jenkins study
