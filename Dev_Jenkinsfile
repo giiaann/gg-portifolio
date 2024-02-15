@@ -15,7 +15,9 @@ pipeline {
                         }
                         
                         // Fetch and checkout the 'develop' branch
-                        sh 'git fetch --all'
+                        sh 'git fetch '
+			sh 'git branch'
+			sh 'git status'
                         sh """
                             git checkout develop || git checkout -b develop origin/develop
                         """
@@ -23,6 +25,7 @@ pipeline {
                         // Additional Git commands
                         sh 'git status'
                         sh 'git pull'
+			sh 'git status'
                     }
                 }
             }
