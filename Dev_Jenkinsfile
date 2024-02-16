@@ -4,23 +4,25 @@ pipeline {
         label 'Dev Node'
     }
     
-    stages {
+   stages {
         stage('Initialization') {
             steps {
                 script {
                     dir('/home/ubuntu/gg-project') {
-                        // Check if Git repository is initialized, and set remote origin
+                        // Ensure the repository is initialized and has a remote set
                         if (!fileExists('.git')) {
                             sh 'git init'
-                            sh 'git remote add origin git@github.com:giiaann/gg-portifolio.git'
-                            echo 'Git repository initialized and remote set.'
+                            sh 'git remote add origin https://github.com/giiaann/gg-portifolio.git'
                         }
                         
-                        // Fetch the 'develop' branch and ensure it's checked out
-                        sh 'git fetch origin develop:develop'
-                        sh 'git checkout develop || git checkout -b develop'
+                        // Fetch the latest changes from the remote repository
+                        sh 'git fetch origin'
+                        
+                        // Checkout to the 'develop' branch safely
+                        sh 'git checkout develop'
+                        
+                        // Pull the latest changes into the 'develop' branch
                         sh 'git pull origin develop'
-                        echo 'On develop branch, repository up to date.'
                     }
                 }
             }
