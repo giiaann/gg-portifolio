@@ -26,8 +26,6 @@ pipeline {
                         // Pull the latest changes into the 'develop' branch
                         sh 'git pull origin develop'
 			sh 'git status'
-			sh 'git branch'
-			sh pwd
                     }
                 }
             }
