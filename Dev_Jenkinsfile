@@ -16,17 +16,23 @@ pipeline {
                         }
                         
                         // Fetch the latest changes from the remote repository
-                        sh 'git fetch origin'
+                        sh 'git status'
+			sh 'git fetch origin'
                         
                         // Checkout to the 'develop' branch safely
                         sh 'git checkout develop'
-                        
+                        sh 'git status'
+
                         // Pull the latest changes into the 'develop' branch
                         sh 'git pull origin develop'
+			sh 'git status'
+			sh 'git branch'
+			sh pwd
                     }
                 }
             }
         }
+
         stage('Build') {
             steps {
                 echo 'Building..'
